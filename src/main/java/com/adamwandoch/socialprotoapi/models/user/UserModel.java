@@ -10,21 +10,21 @@ import java.util.Objects;
  */
 
 @Entity
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue
     private long id;
     private String nickname;
-    private int avatar_id;
+    private int avatar;
 
-    public User() {
+    public UserModel() {
     }
 
-    public User(long id, String nickname, int avatar_id) {
+    public UserModel(long id, String nickname, int avatar) {
         this.id = id;
         this.nickname = nickname;
-        this.avatar_id = avatar_id;
+        this.avatar = avatar;
     }
 
     public long getId() {
@@ -43,25 +43,25 @@ public class User {
         this.nickname = nickname;
     }
 
-    public int getAvatar_id() {
-        return avatar_id;
+    public int getAvatar() {
+        return avatar;
     }
 
-    public void setAvatar_id(int avatar_id) {
-        this.avatar_id = avatar_id;
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nickname, avatar_id);
+        return Objects.hash(id, nickname, avatar);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && avatar_id == user.avatar_id && Objects.equals(nickname, user.nickname);
+        UserModel user = (UserModel) o;
+        return id == user.id && avatar == user.avatar && Objects.equals(nickname, user.nickname);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
-                ", avatar_id=" + avatar_id +
+                ", avatar=" + avatar +
                 '}';
     }
 }
