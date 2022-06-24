@@ -1,4 +1,4 @@
-package com.adamwandoch.socialprotoapi;
+package com.adamwandoch.socialprotoapi.controllers;
 
 import com.adamwandoch.socialprotoapi.models.user.UserModel;
 import com.adamwandoch.socialprotoapi.models.user.UserService;
