@@ -14,24 +14,24 @@ public class UserModel {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String nickname;
     private int avatar;
 
     public UserModel() {
     }
 
-    public UserModel(long id, String nickname, int avatar) {
+    public UserModel(Long id, String nickname, int avatar) {
         this.id = id;
         this.nickname = nickname;
         this.avatar = avatar;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

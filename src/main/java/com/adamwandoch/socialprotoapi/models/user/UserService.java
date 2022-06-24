@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * @author Adam Wandoch
@@ -28,7 +29,26 @@ public class UserService {
         return users;
     }
 
+    public Long getUserId(String nickname) {
+        if (userRepository.existsByNickname(nickname)) {
+            return userRepository.findByNickname(nickname).getId();
+        }
+        return -1L;
+    }
+
+    public Optional<UserModel> getUser(Long id) {
+        return userRepository.findById(id);
+    }
+
     public void save(UserModel user) {
-        userRepository.save(user);
+        if (!userRepository.existsByNickname(user.getNickname())) {
+            userRepository.save(user);
+        } else {
+            UserModel existingUser = userRepository.findByNickname(user.getNickname());
+            if (existingUser != null) {
+                existingUser.setAvatar(user.getAvatar());
+                userRepository.save(existingUser);
+            }
+        }
     }
 }
