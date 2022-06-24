@@ -46,7 +46,7 @@ public class UserService {
         } else {
             UserModel existingUser = userRepository.findByNickname(user.getNickname());
             if (existingUser != null) {
-                existingUser.setAvatar(user.getAvatar());
+                existingUser.setAvatarId(user.getAvatarId());
                 userRepository.save(existingUser);
             }
         }

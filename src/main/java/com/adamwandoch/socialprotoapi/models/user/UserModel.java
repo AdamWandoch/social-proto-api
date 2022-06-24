@@ -16,7 +16,7 @@ public class UserModel {
     @GeneratedValue
     private Long id;
     private String nickname;
-    private int avatar;
+    private int avatarId;
 
     public UserModel() {
     }
@@ -24,7 +24,7 @@ public class UserModel {
     public UserModel(Long id, String nickname, int avatar) {
         this.id = id;
         this.nickname = nickname;
-        this.avatar = avatar;
+        this.avatarId = avatar;
     }
 
     public Long getId() {
@@ -43,17 +43,17 @@ public class UserModel {
         this.nickname = nickname;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public int getAvatarId() {
+        return avatarId;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nickname, avatar);
+        return Objects.hash(id, nickname, avatarId);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class UserModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserModel user = (UserModel) o;
-        return id == user.id && avatar == user.avatar && Objects.equals(nickname, user.nickname);
+        return id == user.id && avatarId == user.avatarId && Objects.equals(nickname, user.nickname);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class UserModel {
         return "User{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
-                ", avatar=" + avatar +
+                ", avatar=" + avatarId +
                 '}';
     }
 }
