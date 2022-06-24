@@ -17,6 +17,7 @@ public class PostModel {
     private Long id;
     private Long userId;
     private String content;
+    private String timestamp;
 
     public PostModel(Long id, Long userId, String content) {
         this.id = id;
@@ -25,6 +26,14 @@ public class PostModel {
     }
 
     public PostModel() {
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Long getId() {
