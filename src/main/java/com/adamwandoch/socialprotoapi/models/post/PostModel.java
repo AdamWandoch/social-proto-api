@@ -19,10 +19,11 @@ public class PostModel {
     private String content;
     private String timestamp;
 
-    public PostModel(Long id, Long userId, String content) {
+    public PostModel(Long id, Long userId, String content, String timestamp) {
         this.id = id;
         this.userId = userId;
         this.content = content;
+        this.timestamp = timestamp;
     }
 
     public PostModel() {

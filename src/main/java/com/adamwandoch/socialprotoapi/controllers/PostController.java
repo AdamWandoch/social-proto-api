@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Adam Wandoch
@@ -29,7 +31,10 @@ public class PostController {
 
     @GetMapping("/post/getall")
     public ArrayList<PostModel> getAllPosts() {
-        return postService.getAll();
+        return (ArrayList<PostModel>) postService.getAll()
+                .stream()
+                .sorted(Comparator.comparing(PostModel::getId).reversed())
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/post/{id}")
