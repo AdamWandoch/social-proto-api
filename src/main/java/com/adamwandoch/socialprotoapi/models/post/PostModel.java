@@ -18,15 +18,25 @@ public class PostModel {
     private Long userId;
     private String content;
     private String timestamp;
+    private int likes;
 
-    public PostModel(Long id, Long userId, String content, String timestamp) {
+    public PostModel(Long id, Long userId, String content, String timestamp, int likes) {
         this.id = id;
         this.userId = userId;
         this.content = content;
         this.timestamp = timestamp;
+        this.likes = likes;
     }
 
     public PostModel() {
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public String getTimestamp() {
@@ -63,7 +73,7 @@ public class PostModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, content);
+        return Objects.hash(id, userId, content, timestamp, likes);
     }
 
     @Override
@@ -71,7 +81,7 @@ public class PostModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostModel postModel = (PostModel) o;
-        return Objects.equals(id, postModel.id) && Objects.equals(userId, postModel.userId) && Objects.equals(content, postModel.content);
+        return likes == postModel.likes && Objects.equals(id, postModel.id) && Objects.equals(userId, postModel.userId) && Objects.equals(content, postModel.content) && Objects.equals(timestamp, postModel.timestamp);
     }
 
     @Override
@@ -80,6 +90,8 @@ public class PostModel {
                 "id=" + id +
                 ", userId=" + userId +
                 ", content='" + content + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", likes=" + likes +
                 '}';
     }
 }
