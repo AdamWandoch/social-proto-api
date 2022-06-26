@@ -21,13 +21,13 @@ public class UserController {
 
     @PostMapping("/user/post")
     public Long postUser(@RequestBody UserModel user) {
-        userService.save(user);
+        userService.saveUser(user);
         return userService.getUserId(user.getNickname());
     }
 
     @GetMapping("/user/getall")
     public ArrayList<UserModel> getAllUsers() {
-        return userService.getAll();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/user/{id}")

@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Adam Wandoch
@@ -23,10 +26,13 @@ public class PostService {
     public PostService() {
     }
 
-    public ArrayList<PostModel> getAll() {
+    public List<PostModel> getAllPosts() {
         ArrayList<PostModel> posts = new ArrayList<>();
         postRepository.findAll().forEach(posts::add);
-        return posts;
+        return posts
+                .stream()
+                .sorted(Comparator.comparing(PostModel::getId).reversed())
+                .collect(Collectors.toList());
     }
 
     public String likePost(Long postId, Long userId) {

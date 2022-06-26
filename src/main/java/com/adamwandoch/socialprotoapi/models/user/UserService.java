@@ -23,7 +23,7 @@ public class UserService {
     public UserService() {
     }
 
-    public ArrayList<UserModel> getAll() {
+    public ArrayList<UserModel> getAllUsers() {
         ArrayList<UserModel> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
         return users;
@@ -40,7 +40,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void save(UserModel user) {
+    public void saveUser(UserModel user) {
         if (!userRepository.existsByNickname(user.getNickname())) {
             userRepository.save(user);
         } else {
