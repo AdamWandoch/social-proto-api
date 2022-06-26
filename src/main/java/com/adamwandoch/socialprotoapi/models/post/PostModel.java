@@ -19,8 +19,8 @@ public class PostModel {
     private Long userId;
     private String content;
     private String timestamp;
-    private int likes;
-    private ArrayList<Long> usersThatLiked;
+    private int likes = 0;
+    private ArrayList<Long> usersThatLiked = new ArrayList<>();
 
     public PostModel() {
     }
@@ -32,6 +32,15 @@ public class PostModel {
         this.timestamp = timestamp;
         this.likes = likes;
         this.usersThatLiked = usersThatLiked;
+    }
+
+    public void like(Long userId) {
+        this.likes++;
+        this.usersThatLiked.add(userId);
+    }
+
+    public void addUserThatLiked(Long userId) {
+        this.usersThatLiked.add(userId);
     }
 
     public int getLikes() {
