@@ -3,6 +3,7 @@ package com.adamwandoch.socialprotoapi.models.post;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -19,16 +20,18 @@ public class PostModel {
     private String content;
     private String timestamp;
     private int likes;
+    private ArrayList<Long> usersThatLiked;
 
-    public PostModel(Long id, Long userId, String content, String timestamp, int likes) {
+    public PostModel() {
+    }
+
+    public PostModel(Long id, Long userId, String content, String timestamp, int likes, ArrayList<Long> usersThatLiked) {
         this.id = id;
         this.userId = userId;
         this.content = content;
         this.timestamp = timestamp;
         this.likes = likes;
-    }
-
-    public PostModel() {
+        this.usersThatLiked = usersThatLiked;
     }
 
     public int getLikes() {
@@ -71,9 +74,17 @@ public class PostModel {
         this.content = content;
     }
 
+    public ArrayList<Long> getUsersThatLiked() {
+        return usersThatLiked;
+    }
+
+    public void setUsersThatLiked(ArrayList<Long> usersThatLiked) {
+        this.usersThatLiked = usersThatLiked;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, content, timestamp, likes);
+        return Objects.hash(id, userId, content, timestamp, likes, usersThatLiked);
     }
 
     @Override
@@ -81,7 +92,7 @@ public class PostModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostModel postModel = (PostModel) o;
-        return likes == postModel.likes && Objects.equals(id, postModel.id) && Objects.equals(userId, postModel.userId) && Objects.equals(content, postModel.content) && Objects.equals(timestamp, postModel.timestamp);
+        return likes == postModel.likes && Objects.equals(id, postModel.id) && Objects.equals(userId, postModel.userId) && Objects.equals(content, postModel.content) && Objects.equals(timestamp, postModel.timestamp) && Objects.equals(usersThatLiked, postModel.usersThatLiked);
     }
 
     @Override
@@ -92,6 +103,8 @@ public class PostModel {
                 ", content='" + content + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 ", likes=" + likes +
+                ", usersThatLiked=" + usersThatLiked +
                 '}';
     }
+
 }
