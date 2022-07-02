@@ -1,5 +1,7 @@
 package com.adamwandoch.socialprotoapi.models.post;
 
+import com.adamwandoch.socialprotoapi.models.user.UserModel;
+import com.adamwandoch.socialprotoapi.models.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -37,7 +41,8 @@ public class PostService {
 
     public String likePost(Long postId, Long userId) {
         Optional<PostModel> oldPost = postRepository.findById(postId);
-        if (oldPost.isPresent()) {
+        Optional<UserModel> user = userRepository.findById(userId);
+        if (oldPost.isPresent() && user.isPresent()) {
             PostModel newPost = oldPost.get();
             if (!newPost.getUsersThatLiked().contains(userId)) {
                 newPost.like(userId);
@@ -46,7 +51,7 @@ public class PostService {
             }
             return "Post already liked by this user";
         }
-        return "Post not found";
+        return "Post or user not found";
     }
 
     public void savePost(PostModel post) {

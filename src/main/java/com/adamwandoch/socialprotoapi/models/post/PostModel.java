@@ -1,5 +1,6 @@
 package com.adamwandoch.socialprotoapi.models.post;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class PostModel {
     private String content;
     private String timestamp;
     private int likes = 0;
+    @Column(length = 20000)
     private ArrayList<Long> usersThatLiked = new ArrayList<>();
 
     public PostModel() {
