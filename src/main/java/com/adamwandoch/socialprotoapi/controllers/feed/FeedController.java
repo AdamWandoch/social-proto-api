@@ -12,15 +12,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class FeedController {
 
-//    @Autowired
-//    private PostService postService;
-//
-//    @MessageMapping("/update")
-//    @SendTo("feed-update/public")
-//    public List<PostModel> feedUpdate() {
-//        return postService.getAllPosts();
-//    }
-
     @MessageMapping("/feed-trigger")
     @SendTo("/feed-clients")
     public String receiveMessage(@Payload String message) {
