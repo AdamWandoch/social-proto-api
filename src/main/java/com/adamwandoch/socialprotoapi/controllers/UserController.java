@@ -20,9 +20,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/post")
-    public Long postUser(@RequestBody UserModel user) {
+    public UserModel postUser(@RequestBody UserModel user) {
         userService.saveUser(user);
-        return userService.getUserId(user.getNickname());
+        return userService.getUserByNickname(user.getNickname());
     }
 
     @GetMapping("/user/getall")

@@ -29,15 +29,12 @@ public class UserService {
         return users;
     }
 
-    public Long getUserId(String nickname) {
-        if (userRepository.existsByNickname(nickname)) {
-            return userRepository.findByNickname(nickname).getId();
-        }
-        return -1L;
-    }
-
     public Optional<UserModel> getUser(Long id) {
         return userRepository.findById(id);
+    }
+
+    public UserModel getUserByNickname(String nickname) {
+        return userRepository.findByNickname(nickname);
     }
 
     public void saveUser(UserModel user) {
