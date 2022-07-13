@@ -23,13 +23,6 @@ public class PostService {
     @Autowired
     private UserRepository userRepository;
 
-    public PostService(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
-
-    public PostService() {
-    }
-
     public List<PostModel> getAllPosts() {
         ArrayList<PostModel> posts = new ArrayList<>();
         postRepository.findAll().forEach(posts::add);
@@ -37,6 +30,14 @@ public class PostService {
                 .stream()
                 .sorted(Comparator.comparing(PostModel::getId).reversed())
                 .collect(Collectors.toList());
+    }
+
+    public Optional<PostModel> getPost(Long id) {
+        return postRepository.findById(id);
+    }
+
+    public void savePost(PostModel post) {
+        postRepository.save(post);
     }
 
     public String likePost(Long postId, Long userId) {
@@ -52,13 +53,5 @@ public class PostService {
             return "Post already liked by this user";
         }
         return "Post or user not found";
-    }
-
-    public void savePost(PostModel post) {
-        postRepository.save(post);
-    }
-
-    public Optional<PostModel> getPost(Long id) {
-        return postRepository.findById(id);
     }
 }
