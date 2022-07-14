@@ -25,4 +25,9 @@ public class LikeController {
     public int getLikes(@PathVariable(value = "postId") Long postId) {
         return likeService.getPostLikes(postId).size();
     }
+
+    @PostMapping("/like/user-liked")
+    public boolean userAlreadyLiked(@RequestBody LikeModel like) {
+        return likeService.userAlreadyLiked(like);
+    }
 }

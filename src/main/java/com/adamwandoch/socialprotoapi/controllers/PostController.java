@@ -21,10 +21,10 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping("/post/like/{userId}")
-    public ResponseEntity likePost(@RequestBody PostModel post, @PathVariable(value = "userId") Long userId) {
-        return ResponseEntity.ok(postService.likePost(post.getId(), userId));
-    }
+//    @PostMapping("/post/like/{userId}")
+//    public ResponseEntity likePost(@RequestBody PostModel post, @PathVariable(value = "userId") Long userId) {
+//        return ResponseEntity.ok(postService.likePost(post.getId(), userId));
+//    }
 
     @PostMapping("/post/post")
     public ResponseEntity postPost(@RequestBody PostModel post) {
