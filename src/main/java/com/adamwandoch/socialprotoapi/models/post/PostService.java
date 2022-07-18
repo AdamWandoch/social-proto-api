@@ -1,6 +1,5 @@
 package com.adamwandoch.socialprotoapi.models.post;
 
-import com.adamwandoch.socialprotoapi.models.user.UserModel;
 import com.adamwandoch.socialprotoapi.models.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,13 +22,6 @@ public class PostService {
     @Autowired
     private UserRepository userRepository;
 
-    public PostService(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
-
-    public PostService() {
-    }
-
     public List<PostModel> getAllPosts() {
         ArrayList<PostModel> posts = new ArrayList<>();
         postRepository.findAll().forEach(posts::add);
@@ -39,26 +31,35 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    public String likePost(Long postId, Long userId) {
-        Optional<PostModel> oldPost = postRepository.findById(postId);
-        Optional<UserModel> user = userRepository.findById(userId);
-        if (oldPost.isPresent() && user.isPresent()) {
-            PostModel newPost = oldPost.get();
-            if (!newPost.getUsersThatLiked().contains(userId)) {
-                newPost.like(userId);
-                postRepository.save(newPost);
-                return "Post Liked";
-            }
-            return "Post already liked by this user";
-        }
-        return "Post or user not found";
+    public Optional<PostModel> getPost(Long id) {
+        return postRepository.findById(id);
     }
 
     public void savePost(PostModel post) {
         postRepository.save(post);
     }
 
-    public Optional<PostModel> getPost(Long id) {
-        return postRepository.findById(id);
+    public void addLike(Long postId) {
+        Optional<PostModel> post = postRepository.findById(postId);
+        if (post.isPresent()) {
+            PostModel updatedPost = post.get();
+            updatedPost.setLikes(updatedPost.getLikes() + 1);
+            postRepository.save(updatedPost);
+        }
     }
+
+//    public String likePost(Long postId, Long userId) {
+//        Optional<PostModel> oldPost = postRepository.findById(postId);
+//        Optional<UserModel> user = userRepository.findById(userId);
+//        if (oldPost.isPresent() && user.isPresent()) {
+//            PostModel newPost = oldPost.get();
+//            if (!newPost.getUsersThatLiked().contains(userId)) {
+//                newPost.like(userId);
+//                postRepository.save(newPost);
+//                return "Post Liked";
+//            }
+//            return "Post already liked by this user";
+//        }
+//        return "Post or user not found";
+//    }
 }
