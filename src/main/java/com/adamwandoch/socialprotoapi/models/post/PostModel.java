@@ -20,7 +20,7 @@ public class PostModel {
     private Long userId;
     private String content;
     private String timestamp;
-//    private int likes = 0;
+    private int likes = 0;
 //    @Column(length = 20000)
 //    private ArrayList<Long> usersThatLiked = new ArrayList<>();
 //

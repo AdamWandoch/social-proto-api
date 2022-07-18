@@ -45,6 +45,7 @@ public class LikeService {
                 if (likes.stream()
                         .noneMatch(l -> Objects.equals(l.getUserId(), like.getUserId()))) {
                     likeRepository.save(like);
+                    postService.addLike(like.getPostId());
                     return "Post liked.";
                 } else return "Post already liked by this user.";
             }

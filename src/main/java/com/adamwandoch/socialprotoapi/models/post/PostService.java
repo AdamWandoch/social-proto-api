@@ -39,6 +39,15 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public void addLike(Long postId) {
+        Optional<PostModel> post = postRepository.findById(postId);
+        if (post.isPresent()) {
+            PostModel updatedPost = post.get();
+            updatedPost.setLikes(updatedPost.getLikes() + 1);
+            postRepository.save(updatedPost);
+        }
+    }
+
 //    public String likePost(Long postId, Long userId) {
 //        Optional<PostModel> oldPost = postRepository.findById(postId);
 //        Optional<UserModel> user = userRepository.findById(userId);
