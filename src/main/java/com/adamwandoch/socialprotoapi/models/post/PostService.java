@@ -47,19 +47,4 @@ public class PostService {
             postRepository.save(updatedPost);
         }
     }
-
-//    public String likePost(Long postId, Long userId) {
-//        Optional<PostModel> oldPost = postRepository.findById(postId);
-//        Optional<UserModel> user = userRepository.findById(userId);
-//        if (oldPost.isPresent() && user.isPresent()) {
-//            PostModel newPost = oldPost.get();
-//            if (!newPost.getUsersThatLiked().contains(userId)) {
-//                newPost.like(userId);
-//                postRepository.save(newPost);
-//                return "Post Liked";
-//            }
-//            return "Post already liked by this user";
-//        }
-//        return "Post or user not found";
-//    }
 }

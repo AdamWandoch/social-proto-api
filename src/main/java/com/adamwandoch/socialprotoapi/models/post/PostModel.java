@@ -21,15 +21,4 @@ public class PostModel {
     private String content;
     private String timestamp;
     private int likes = 0;
-//    @Column(length = 20000)
-//    private ArrayList<Long> usersThatLiked = new ArrayList<>();
-//
-//    public void like(Long userId) {
-//        this.likes++;
-//        this.usersThatLiked.add(userId);
-//    }
-//
-//    public void addUserThatLiked(Long userId) {
-//        this.usersThatLiked.add(userId);
-//    }
 }
