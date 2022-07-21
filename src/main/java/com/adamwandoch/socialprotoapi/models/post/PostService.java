@@ -1,6 +1,5 @@
 package com.adamwandoch.socialprotoapi.models.post;
 
-import com.adamwandoch.socialprotoapi.models.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,6 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     public List<PostModel> getAllPosts() {
         ArrayList<PostModel> posts = new ArrayList<>();
