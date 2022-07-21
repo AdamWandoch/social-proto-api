@@ -19,5 +19,4 @@ public class UserModel {
     private Long id;
     private String nickname;
     private int avatarId;
-
 }
