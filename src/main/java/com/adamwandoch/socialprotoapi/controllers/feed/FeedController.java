@@ -23,7 +23,7 @@ public class FeedController {
     @MessageMapping("/feed-trigger")
     @SendTo("/feed-clients")
     public List<PostModel> receiveMessage(@Payload String message) throws InterruptedException {
-        Thread.sleep(1000); // allow repository to save new data from client
+        Thread.sleep(500); // allow repository to save new data from client
         return postService.getAllPosts();
     }
 
