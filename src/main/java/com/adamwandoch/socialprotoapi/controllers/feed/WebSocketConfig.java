@@ -10,6 +10,8 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
  * @author Adam Wandoch
  */
 
+// TODO: 24/07/2022 implement separate topic for each posts to listen to comment updates and trigger re-render
+
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
