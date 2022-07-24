@@ -20,4 +20,5 @@ public class CommentModel {
     private Long postId;
     private Long userId;
     private String content;
+    private String timestamp;
 }
