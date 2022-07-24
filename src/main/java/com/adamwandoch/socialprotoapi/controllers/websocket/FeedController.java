@@ -1,4 +1,4 @@
-package com.adamwandoch.socialprotoapi.controllers.feed;
+package com.adamwandoch.socialprotoapi.controllers.websocket;
 
 import com.adamwandoch.socialprotoapi.models.post.PostModel;
 import com.adamwandoch.socialprotoapi.models.post.PostService;

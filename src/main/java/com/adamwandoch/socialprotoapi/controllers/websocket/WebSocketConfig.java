@@ -1,4 +1,4 @@
-package com.adamwandoch.socialprotoapi.controllers.feed;
+package com.adamwandoch.socialprotoapi.controllers.websocket;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -9,6 +9,8 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 /**
  * @author Adam Wandoch
  */
+
+// TODO: 24/07/2022 implement separate topic for each posts to listen to comment updates and trigger re-render
 
 @Configuration
 @EnableWebSocketMessageBroker
