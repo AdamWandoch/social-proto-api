@@ -21,4 +21,5 @@ public class PostModel {
     private String content;
     private String timestamp;
     private int likes = 0;
+    private int comments = 0;
 }
