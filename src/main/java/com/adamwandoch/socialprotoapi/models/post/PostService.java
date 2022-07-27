@@ -44,4 +44,13 @@ public class PostService {
             postRepository.save(updatedPost);
         }
     }
+
+    public void addComment(Long postId) {
+        Optional<PostModel> post = postRepository.findById(postId);
+        if (post.isPresent()) {
+            PostModel updatedPost = post.get();
+            updatedPost.setComments(updatedPost.getComments() + 1);
+            postRepository.save(updatedPost);
+        }
+    }
 }
