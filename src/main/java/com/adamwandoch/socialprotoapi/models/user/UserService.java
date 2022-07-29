@@ -16,6 +16,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public ArrayList<UserModel> getAllUsers() {
         ArrayList<UserModel> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
