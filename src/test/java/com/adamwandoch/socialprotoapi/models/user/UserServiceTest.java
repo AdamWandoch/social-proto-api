@@ -1,12 +1,14 @@
 package com.adamwandoch.socialprotoapi.models.user;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -26,7 +28,7 @@ class UserServiceTest {
     }
 
     @Test
-    void getAllUsers() {
+    void canGetAllUsers() {
         // when
         underTest.getAllUsers();
         // then
@@ -34,17 +36,66 @@ class UserServiceTest {
     }
 
     @Test
-    @Disabled
-    void getUser() {
+    void canGetUserById() {
+        // given
+        Long id = 123L;
+
+        // when
+        underTest.getUser(id);
+
+        // then
+        verify(userRepository).findById(id);
     }
 
     @Test
-    @Disabled
-    void getUserByNickname() {
+    void canGetUserByNickname() {
+        // given
+        String nickname = "some nickname";
+
+        // when
+        underTest.getUserByNickname(nickname);
+
+        // then
+        verify(userRepository).findByNickname(nickname);
     }
 
     @Test
-    @Disabled
-    void saveUser() {
+    void canSaveUser() {
+        // given
+        UserModel user = new UserModel();
+        user.setId(123L);
+        user.setNickname("nickname");
+        user.setAvatarId(123);
+
+        // when
+        underTest.saveUser(user);
+
+        // then
+        ArgumentCaptor<UserModel> userModelArgumentCaptor = ArgumentCaptor.forClass(UserModel.class);
+
+        verify(userRepository).save(userModelArgumentCaptor.capture());
+
+        UserModel capturedUser = userModelArgumentCaptor.getValue();
+        assertThat(capturedUser).isEqualTo(user);
+    }
+
+    @Test
+    void canUpdateUserIfAlreadyExists() {
+        // given
+        UserModel user = new UserModel();
+        user.setId(123L);
+        user.setNickname("nickname");
+        user.setAvatarId(123);
+
+        given(userRepository.existsByNickname(user.getNickname()))
+                .willReturn(true);
+        given(userRepository.findByNickname(user.getNickname()))
+                .willReturn(user);
+
+        // when
+        underTest.saveUser(user);
+
+        // then
+        verify(userRepository).save(user);
     }
 }
