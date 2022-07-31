@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -63,9 +64,6 @@ class UserServiceTest {
     void canSaveUser() {
         // given
         UserModel user = new UserModel();
-        user.setId(123L);
-        user.setNickname("nickname");
-        user.setAvatarId(123);
 
         // when
         underTest.saveUser(user);
@@ -82,20 +80,15 @@ class UserServiceTest {
     @Test
     void canUpdateUserIfAlreadyExists() {
         // given
-        UserModel user = new UserModel();
-        user.setId(123L);
-        user.setNickname("nickname");
-        user.setAvatarId(123);
-
-        given(userRepository.existsByNickname(user.getNickname()))
+        given(userRepository.existsByNickname(any()))
                 .willReturn(true);
-        given(userRepository.findByNickname(user.getNickname()))
-                .willReturn(user);
+        given(userRepository.findByNickname(any()))
+                .willReturn(new UserModel());
 
         // when
-        underTest.saveUser(user);
+        underTest.saveUser(new UserModel());
 
         // then
-        verify(userRepository).save(user);
+        verify(userRepository).save(new UserModel());
     }
 }
