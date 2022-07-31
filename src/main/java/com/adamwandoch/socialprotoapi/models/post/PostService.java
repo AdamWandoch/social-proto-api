@@ -19,6 +19,10 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
     public List<PostModel> getAllPosts() {
         ArrayList<PostModel> posts = new ArrayList<>();
         postRepository.findAll().forEach(posts::add);
