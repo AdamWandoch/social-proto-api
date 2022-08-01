@@ -20,6 +20,10 @@ public class FeedController {
     @Autowired
     private PostService postService;
 
+    public FeedController(PostService postService) {
+        this.postService = postService;
+    }
+
     @MessageMapping("/feed-trigger")
     @SendTo("/feed-clients")
     public List<PostModel> receiveMessage(@Payload String message) throws InterruptedException {
