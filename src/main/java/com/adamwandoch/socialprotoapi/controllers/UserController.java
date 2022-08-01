@@ -19,6 +19,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/user/post")
     public UserModel postUser(@RequestBody UserModel user) {
         userService.saveUser(user);
