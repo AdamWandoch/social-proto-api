@@ -26,6 +26,13 @@ public class CleanupController {
     @Autowired
     private CommentRepository commentRepository;
 
+    public CleanupController(UserRepository userRepository, PostRepository postRepository, LikeRepository likeRepository, CommentRepository commentRepository) {
+        this.userRepository = userRepository;
+        this.postRepository = postRepository;
+        this.likeRepository = likeRepository;
+        this.commentRepository = commentRepository;
+    }
+
     @GetMapping("/clear")
     public String wipeClean() {
         String message = "WIPEOUT COMPLETE";
