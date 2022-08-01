@@ -20,6 +20,12 @@ public class CommentService {
     @Autowired
     private PostService postService;
 
+    public CommentService(CommentRepository commentRepository,
+                          PostService postService) {
+        this.commentRepository = commentRepository;
+        this.postService = postService;
+    }
+
     public void saveComment(CommentModel commentModel) {
         Optional<PostModel> post = postService.getPost(commentModel.getPostId());
         if (post.isPresent()) {
@@ -29,10 +35,6 @@ public class CommentService {
     }
 
     public ArrayList<CommentModel> getCommentsByPostId(Long postId) {
-        Optional<PostModel> post = postService.getPost(postId);
-        if (post.isPresent()) {
             return commentRepository.getCommentsByPostId(postId);
-        }
-        return null;
     }
 }

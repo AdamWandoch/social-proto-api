@@ -27,6 +27,12 @@ public class LikeService {
     @Autowired
     private UserService userService;
 
+    public LikeService(LikeRepository likeRepository, PostService postService, UserService userService) {
+        this.likeRepository = likeRepository;
+        this.postService = postService;
+        this.userService = userService;
+    }
+
     public List<LikeModel> getPostLikes(Long postId) {
         ArrayList<LikeModel> likes = new ArrayList<>();
         likeRepository.findAll().forEach(likes::add);
