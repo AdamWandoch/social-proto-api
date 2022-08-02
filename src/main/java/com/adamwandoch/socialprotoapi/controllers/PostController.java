@@ -21,6 +21,10 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
+
     @PostMapping("/post/post")
     public ResponseEntity postPost(@RequestBody PostModel post) {
         postService.savePost(post);

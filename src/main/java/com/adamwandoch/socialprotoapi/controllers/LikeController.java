@@ -16,6 +16,10 @@ public class LikeController {
     @Autowired
     private LikeService likeService;
 
+    public LikeController(LikeService likeService) {
+        this.likeService = likeService;
+    }
+
     @PostMapping("/like/save")
     public String saveLike(@RequestBody LikeModel like) {
         return likeService.saveLike(like);

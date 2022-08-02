@@ -20,6 +20,10 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
     @PostMapping("/comment/save")
     public ResponseEntity saveComment(@RequestBody CommentModel comment) {
         commentService.saveComment(comment);
