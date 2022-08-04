@@ -12,22 +12,31 @@ Deployed [here](https://social-proto-api.herokuapp.com/), (nothing set up on the
 
 ### User Entity:
 GET: [/user/getall](https://social-proto-api.herokuapp.com/user/getall)
-GET: [/user/{id}](https://social-proto-api.herokuapp.com/user/{id})
-POST: [/user/post](https://social-proto-api.herokuapp.com/user/post)
 
+GET: [/user/{id}](https://social-proto-api.herokuapp.com/user/{id}) 
+
+POST: [/user/post](https://social-proto-api.herokuapp.com/user/post) 
 ### Post Entity
 GET: [/post/getall](https://social-proto-api.herokuapp.com/post/getall)
+
 GET: [/post/{id}](https://social-proto-api.herokuapp.com/post/{id})
+
 POST: [/post/post](https://social-proto-api.herokuapp.com/post/post)
+
 
 ### Like Entity
 GET: [/like/get/{postId}](https://social-proto-api.herokuapp.com/like/get/{postId})
+
 POST: [/like/save](https://social-proto-api.herokuapp.com/like/save)
+
 POST: [/like/user-liked](https://social-proto-api.herokuapp.com/like/user-liked)
+
 
 ### Comment Entity
 GET: [/comment/save](https://social-proto-api.herokuapp.com/comment/save)
+
 POST: [/comment/{postId}](https://social-proto-api.herokuapp.com/comment/{postId})
+
 
 ### Clear all records
 GET: [/clear](https://social-proto-api.herokuapp.com/clear)
