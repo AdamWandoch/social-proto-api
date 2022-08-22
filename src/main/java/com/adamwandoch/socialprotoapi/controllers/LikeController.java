@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"https://social-app-prototype.netlify.app/", "http://localhost:3000"})
 public class LikeController {
 
     @Autowired

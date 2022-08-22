@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"https://social-app-prototype.netlify.app/", "http://localhost:3000"})
 public class PostController {
 
     @Autowired

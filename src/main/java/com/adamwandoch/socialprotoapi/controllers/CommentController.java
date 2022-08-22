@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"https://social-app-prototype.netlify.app/", "http://localhost:3000"})
 public class CommentController {
 
     @Autowired
