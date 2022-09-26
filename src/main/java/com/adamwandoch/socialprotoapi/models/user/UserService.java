@@ -31,14 +31,14 @@ public class UserService {
     }
 
     public UserModel getUserByNickname(String nickname) {
-        return userRepository.findByNickname(nickname);
+        return userRepository.findFirstByNickname(nickname);
     }
 
     public void saveUser(UserModel user) {
         if (!userRepository.existsByNickname(user.getNickname())) {
             userRepository.save(user);
         } else {
-            UserModel existingUser = userRepository.findByNickname(user.getNickname());
+            UserModel existingUser = userRepository.findFirstByNickname(user.getNickname());
             if (existingUser != null) {
                 existingUser.setAvatarId(user.getAvatarId());
                 userRepository.save(existingUser);

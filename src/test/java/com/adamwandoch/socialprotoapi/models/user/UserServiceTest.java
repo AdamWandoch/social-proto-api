@@ -57,7 +57,7 @@ class UserServiceTest {
         underTest.getUserByNickname(nickname);
 
         // then
-        verify(userRepository).findByNickname(nickname);
+        verify(userRepository).findFirstByNickname(nickname);
     }
 
     @Test
@@ -82,7 +82,7 @@ class UserServiceTest {
         // given
         given(userRepository.existsByNickname(any()))
                 .willReturn(true);
-        given(userRepository.findByNickname(any()))
+        given(userRepository.findFirstByNickname(any()))
                 .willReturn(new UserModel());
 
         // when

@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<UserModel, Long> {
 
-    UserModel findByNickname(String nickname);
+    UserModel findFirstByNickname(String nickname);
 
     boolean existsByNickname(String nickname);
 }
