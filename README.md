@@ -36,7 +36,3 @@ POST: [/like/user-liked](https://social-proto-api.herokuapp.com/like/user-liked)
 GET: [/comment/{postId}](https://social-proto-api.herokuapp.com/comment/{postId})
 
 POST: [/comment/save](https://social-proto-api.herokuapp.com/comment/save)
-
-
-### Clear all records
-GET: [/clear](https://social-proto-api.herokuapp.com/clear)
