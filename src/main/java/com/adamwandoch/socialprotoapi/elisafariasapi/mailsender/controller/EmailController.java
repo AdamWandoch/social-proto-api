@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 // Annotation
 @RestController
+@CrossOrigin(origins = {"https://elisafarias.netlify.app/", "http://localhost:3000"})
 @RequestMapping("/efapi")
 // Class
 public class EmailController {
