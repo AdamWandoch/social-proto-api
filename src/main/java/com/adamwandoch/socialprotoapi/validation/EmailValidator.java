@@ -1,15 +1,18 @@
 package com.adamwandoch.socialprotoapi.validation;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailValidator {
 
-    private static final String REGEX_EMAIL = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$";
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     private EmailValidator() {
     }
 
-    public static boolean IsEmailValid(String email) {
-        return Pattern.compile(REGEX_EMAIL).matcher(email).matches();
+    public static boolean IsEmailValid(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 }
