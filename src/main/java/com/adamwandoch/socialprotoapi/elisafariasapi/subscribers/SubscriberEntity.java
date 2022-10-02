@@ -18,4 +18,12 @@ public class SubscriberEntity {
     private Long id;
     private String name;
     private String email;
+
+    @Override
+    public String toString() {
+        return "SubscriberEntity{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
