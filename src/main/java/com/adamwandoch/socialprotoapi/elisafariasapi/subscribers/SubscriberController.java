@@ -37,19 +37,20 @@ public class SubscriberController {
         if (IsEmailValid(subscriber.getEmail())) {
             // if valid, try adding to db
             if (subscriberService.addSubscriber(subscriber)) {
+                // if added successfully
                 // send welcome email to user
-                emailService.sendWelcomeEmail(subscriber);
+                responseBody = emailService.sendWelcomeEmail(subscriber);
                 // send notification email to elisa
-                responseBody = emailService.sendNotificationEmail(subscriber);
+                responseBody += " | " + emailService.sendNotificationEmail(subscriber);
                 // return success response
                 return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.CREATED);
             }
             // return response with "email already taken"
-            responseBody = "Email already taken!";
+            responseBody = "Email already registered. Try using a different email.";
             return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
         }
         // return response with "email invalid"
-        responseBody = "Email failed validation. Check email format.";
+        responseBody = "Email validation failed. Check email format and try again.";
         return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
     }
 
