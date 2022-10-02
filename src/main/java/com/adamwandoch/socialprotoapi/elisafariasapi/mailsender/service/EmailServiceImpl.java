@@ -41,7 +41,9 @@ public class EmailServiceImpl implements EmailService {
             javaMailSenderImpl.setUsername(credentials.getUsername());
             javaMailSenderImpl.setPassword(credentials.getPassword());
             javaMailSenderImpl.send(mailMessage);
-            return "Mail Sent Successfully...";
+            return String.format("Mail Sent Successfully (FROM: %1$s, TO: %2$s)",
+                    credentials.getUsername(),
+                    details.getRecipient());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return "Error while Sending Mail";
