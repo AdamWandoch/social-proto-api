@@ -84,11 +84,14 @@ public class EmailServiceImpl implements EmailService {
         details.setRecipient(subscriber.getEmail());
         // TODO: 01/10/2022 update welcome message content
         details.setMsgBody(String.format(
-                        "Bem-vindo %s!\n" +
+                "Bem-vindo %s!\n" +
                         "\n" +
                         "Obrigada por subscrever a nossa newsletter!\n" +
-                        "\nHere Elisa needs to update the content of welcome message...",
-                        subscriber.getName()));
+                        "\nVou mantê-lo atualizado aqui, assim você não vai perder nada :)\n" +
+                        "\n" +
+                        "Abraços\n" +
+                        "Elisa",
+                subscriber.getName()));
 
         return sendSimpleMail(details, credentials.GetElisa());
     }
