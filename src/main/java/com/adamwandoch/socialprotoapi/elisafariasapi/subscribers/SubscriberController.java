@@ -47,7 +47,7 @@ public class SubscriberController {
             }
             // return response with "email already taken"
             responseBody = "Email already registered. Try using a different email.";
-            return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.IM_USED);
         }
         // return response with "email invalid"
         responseBody = "Email validation failed. Check email format and try again.";
