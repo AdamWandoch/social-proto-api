@@ -1,5 +1,6 @@
 package com.adamwandoch.socialprotoapi.elisafariasapi.subscribers;
 
+import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.Emailable;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Data
-public class SubscriberEntity {
+public class SubscriberEntity implements Emailable {
 
     @Id
     @GeneratedValue
@@ -22,8 +23,8 @@ public class SubscriberEntity {
     @Override
     public String toString() {
         return "SubscriberEntity{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                "\nname='" + name + '\'' +
+                "\n, email='" + email + '\'' +
                 '}';
     }
 }
