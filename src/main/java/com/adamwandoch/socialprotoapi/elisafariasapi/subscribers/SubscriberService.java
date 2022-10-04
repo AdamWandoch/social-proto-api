@@ -40,7 +40,11 @@ public class SubscriberService {
 
     public ArrayList<SubscriberEntity> getAllSubscribers() {
         ArrayList<SubscriberEntity> subscribers = new ArrayList<>();
-        subscriberRepository.findAll().forEach(subscribers::add);
+        try {
+            subscriberRepository.findAll().forEach(subscribers::add);
+        } catch (Exception e) {
+            return null;
+        }
         return subscribers;
     }
 }
