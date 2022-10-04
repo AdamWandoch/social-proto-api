@@ -2,6 +2,7 @@ package com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.service;
 
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.EmailCredentials;
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.EmailDetails;
+import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.Emailable;
 import com.adamwandoch.socialprotoapi.elisafariasapi.subscribers.SubscriberEntity;
 
 public interface EmailService {
@@ -13,7 +14,11 @@ public interface EmailService {
     // To send an email with attachment
     String sendMailWithAttachment(EmailDetails details, EmailCredentials credentials);
 
-    String sendWelcomeEmail(SubscriberEntity subscriber);
+    String sendWelcomeEmail(Emailable entity);
 
-    String sendNotificationEmail(SubscriberEntity subscriber);
+    String sendNotificationEmail(Emailable entity);
+
+    String sendContactFormConfirmation(Emailable entity);
+
+    String sendContactFormNotification(Emailable entity);
 }

@@ -7,6 +7,7 @@ import java.io.File;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.Emailable;
 import com.adamwandoch.socialprotoapi.elisafariasapi.subscribers.SubscriberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -78,11 +79,10 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    public String sendWelcomeEmail(SubscriberEntity subscriber) {
+    public String sendWelcomeEmail(Emailable entity) {
         EmailDetails details = new EmailDetails();
-        details.setSubject(String.format("Olá %s! Bem-vindo!", subscriber.getName()));
-        details.setRecipient(subscriber.getEmail());
-        // TODO: 01/10/2022 update welcome message content
+        details.setSubject(String.format("Olá %s! Bem-vindo!", entity.getName()));
+        details.setRecipient(entity.getEmail());
         details.setMsgBody(String.format(
                 "Bem-vindo %s!\n" +
                         "\n" +
@@ -91,16 +91,42 @@ public class EmailServiceImpl implements EmailService {
                         "\n" +
                         "Abraços\n" +
                         "Elisa",
-                subscriber.getName()));
+                entity.getName()));
 
         return sendSimpleMail(details, credentials.GetElisa());
     }
 
-    public String sendNotificationEmail(SubscriberEntity subscriber) {
+    public String sendNotificationEmail(Emailable entity) {
         EmailDetails details = new EmailDetails();
         details.setSubject("NEW SUBSCRIBER ADDED");
         details.setRecipient(credentials.GetElisa().getUsername());
-        details.setMsgBody("New subscriber added: \n\n" + subscriber);
+        details.setMsgBody("New subscriber added: \n\n" + entity);
+
+        return sendSimpleMail(details, credentials.GetNoreply());
+    }
+
+    public String sendContactFormConfirmation(Emailable entity) {
+        EmailDetails details = new EmailDetails();
+        details.setSubject(String.format("Olá %s! Bem-vindo!", entity.getName()));
+        details.setRecipient(entity.getEmail());
+        details.setMsgBody(String.format(
+                "Bem-vindo %s!\n" +
+                        "\n" +
+                        "Obrigada por contato!\n" +
+                        "\nVou responder o mais rápido possível!\n" +
+                        "\n" +
+                        "Abraços\n" +
+                        "Elisa",
+                entity.getName()));
+
+        return sendSimpleMail(details, credentials.GetElisa());
+    }
+
+    public String sendContactFormNotification(Emailable entity) {
+        EmailDetails details = new EmailDetails();
+        details.setSubject("NEW CONTACT FORM RECEIVED");
+        details.setRecipient(credentials.GetElisa().getUsername());
+        details.setMsgBody("New contact form added: \n\n" + entity);
 
         return sendSimpleMail(details, credentials.GetNoreply());
     }
