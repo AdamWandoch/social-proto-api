@@ -11,6 +11,10 @@ public class SubscriberService {
     @Autowired
     private SubscriberRepository subscriberRepository;
 
+    public SubscriberService(SubscriberRepository subscriberRepository) {
+        this.subscriberRepository = subscriberRepository;
+    }
+
     public boolean addSubscriber(SubscriberEntity subscriber) {
 
         if (subscriberRepository.findByEmail(subscriber.getEmail()).isPresent()) {
@@ -21,7 +25,7 @@ public class SubscriberService {
     }
 
     public SubscriberEntity getSubscriberByEmail(SubscriberEntity subscriber) {
-        if (subscriberRepository.findByEmail(subscriber.getEmail()).isPresent()){
+        if (subscriberRepository.findByEmail(subscriber.getEmail()).isPresent()) {
             return subscriberRepository.findByEmail(subscriber.getEmail()).get();
         }
         return null;
