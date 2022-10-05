@@ -1,7 +1,6 @@
 package com.adamwandoch.socialprotoapi.elisafariasapi.contactforms;
 
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.service.EmailService;
-import com.adamwandoch.socialprotoapi.elisafariasapi.subscribers.SubscriberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -39,9 +38,9 @@ public class ContactFormController {
             // if valid add to db
             contactFormService.addContactForm(form);
             // send confirmation email to user
-            responseBody = emailService.sendContactFormConfirmation(form);
+            responseBody = emailService.sendContactFormConfirmationEmail(form);
             // send notification to elisa
-            responseBody += " | " + emailService.sendContactFormNotification(form);
+            responseBody += " | " + emailService.sendContactFormNotificationEmail(form);
             return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.OK);
         }
         // if not valid return response with "email invalid"

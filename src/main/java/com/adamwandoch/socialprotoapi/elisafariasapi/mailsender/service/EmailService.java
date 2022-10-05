@@ -3,7 +3,6 @@ package com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.service;
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.EmailCredentials;
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.EmailDetails;
 import com.adamwandoch.socialprotoapi.elisafariasapi.mailsender.entity.Emailable;
-import com.adamwandoch.socialprotoapi.elisafariasapi.subscribers.SubscriberEntity;
 
 public interface EmailService {
     // Method
@@ -18,7 +17,7 @@ public interface EmailService {
 
     String sendNotificationEmail(Emailable entity);
 
-    String sendContactFormConfirmation(Emailable entity);
+    String sendContactFormConfirmationEmail(Emailable entity);
 
-    String sendContactFormNotification(Emailable entity);
+    String sendContactFormNotificationEmail(Emailable entity);
 }

@@ -105,7 +105,7 @@ public class EmailServiceImpl implements EmailService {
         return sendSimpleMail(details, credentials.GetNoreply());
     }
 
-    public String sendContactFormConfirmation(Emailable entity) {
+    public String sendContactFormConfirmationEmail(Emailable entity) {
         EmailDetails details = new EmailDetails();
         details.setSubject(String.format("Olá %s! Bem-vindo!", entity.getName()));
         details.setRecipient(entity.getEmail());
@@ -122,7 +122,7 @@ public class EmailServiceImpl implements EmailService {
         return sendSimpleMail(details, credentials.GetElisa());
     }
 
-    public String sendContactFormNotification(Emailable entity) {
+    public String sendContactFormNotificationEmail(Emailable entity) {
         EmailDetails details = new EmailDetails();
         details.setSubject("NEW CONTACT FORM RECEIVED");
         details.setRecipient(credentials.GetElisa().getUsername());
