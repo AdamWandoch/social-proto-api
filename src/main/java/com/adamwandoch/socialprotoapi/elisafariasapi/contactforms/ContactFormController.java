@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static com.adamwandoch.socialprotoapi.validation.EmailValidator.IsEmailValid;
 
 @RestController
-@CrossOrigin(origins = {"https://elisafarias.netlify.app/", "http://localhost:3000"})
+@CrossOrigin(origins = {"https://elisafarias.netlify.app/", "http://localhost:3000", "https://www.elisafarias.com/"})
 @RequestMapping("/efapi/contactform")
 public class ContactFormController {
 
