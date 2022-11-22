@@ -33,23 +33,15 @@ public class SubscriberController {
         responseHeaders.setLocation(location);
         responseHeaders.set("Custom header name", "Custom header value");
         String responseBody;
-        // validate email
         if (IsEmailValid(subscriber.getEmail())) {
-            // if valid, try adding to db
             if (subscriberService.addSubscriber(subscriber)) {
-                // if added successfully
-                // send welcome email to user
                 responseBody = emailService.sendWelcomeEmail(subscriber);
-                // send notification email to elisa
                 responseBody += " | " + emailService.sendNotificationEmail(subscriber);
-                // return success response
                 return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.CREATED);
             }
-            // return response with "email already taken"
             responseBody = "Email already registered. Try using a different email.";
             return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.IM_USED);
         }
-        // return response with "email invalid"
         responseBody = "Email validation failed. Check email format and try again.";
         return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
     }
