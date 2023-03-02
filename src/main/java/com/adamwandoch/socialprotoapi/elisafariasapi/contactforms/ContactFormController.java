@@ -48,6 +48,26 @@ public class ContactFormController {
         return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
     }
 
+    @PostMapping("/add-payment-attempt")
+    public ResponseEntity<String> addPaymentAttempt(@RequestBody ContactFormEntity form) {
+        URI location = URI.create("addContactFormURIlocation");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(location);
+        responseHeaders.set("Custom header name", "Custom header value");
+        String responseBody;
+        // validate email
+        if (IsEmailValid(form.getEmail())) {
+            // if valid add to db
+            contactFormService.addContactForm(form);
+            // send notification to elisa
+            responseBody = " | " + emailService.sendContactFormNotificationEmail(form);
+            return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.OK);
+        }
+        // if not valid return response with "email invalid"
+        responseBody = "Email validation failed. Check email format and try again.";
+        return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.FORBIDDEN);
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<ArrayList<ContactFormEntity>> getAllForms() {
         URI location = URI.create("getAllContactFormsURIlocation");
