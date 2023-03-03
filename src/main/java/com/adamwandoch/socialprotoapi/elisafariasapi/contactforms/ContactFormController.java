@@ -60,7 +60,7 @@ public class ContactFormController {
             // if valid add to db
             contactFormService.addContactForm(form);
             // send notification to elisa
-            responseBody = " | " + emailService.sendContactFormNotificationEmail(form);
+            responseBody = emailService.sendContactFormNotificationEmail(form);
             return new ResponseEntity<String>(responseBody, responseHeaders, HttpStatus.OK);
         }
         // if not valid return response with "email invalid"

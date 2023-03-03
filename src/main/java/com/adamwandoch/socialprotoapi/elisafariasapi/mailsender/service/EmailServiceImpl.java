@@ -124,9 +124,9 @@ public class EmailServiceImpl implements EmailService {
 
     public String sendContactFormNotificationEmail(Emailable entity) {
         EmailDetails details = new EmailDetails();
-        details.setSubject("NEW CONTACT FORM RECEIVED");
+        details.setSubject("New Data Entered on ElisaFarias.com");
         details.setRecipient(credentials.GetElisa().getUsername());
-        details.setMsgBody("New contact form added: \n\n" + entity);
+        details.setMsgBody("Data captured: \n\n" + entity);
 
         return sendSimpleMail(details, credentials.GetNoreply());
     }

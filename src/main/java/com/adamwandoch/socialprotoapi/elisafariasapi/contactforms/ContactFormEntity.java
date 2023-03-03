@@ -21,8 +21,7 @@ public class ContactFormEntity implements Emailable {
 
     @Override
     public String toString() {
-        return "Contact Form Data" +
-                "\nName: " + name +
+        return  "\nName: " + name +
                 "\nLast Name: " + lastName +
                 "\nEmail: " + email +
                 "\nMessage: " + message;
