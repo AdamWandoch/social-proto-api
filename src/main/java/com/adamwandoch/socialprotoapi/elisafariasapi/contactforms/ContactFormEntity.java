@@ -21,11 +21,10 @@ public class ContactFormEntity implements Emailable {
 
     @Override
     public String toString() {
-        return "ContactFormEntity{" +
-                "\nname='" + name + '\'' +
-                ", \nlastName='" + lastName + '\'' +
-                ", \nemail='" + email + '\'' +
-                ", \nmessage='" + message + '\'' +
-                '}';
+        return "Contact Form Data" +
+                "\nName: " + name +
+                "\nLast Name: " + lastName +
+                "\nEmail: " + email +
+                "\nMessage: " + message;
     }
 }
