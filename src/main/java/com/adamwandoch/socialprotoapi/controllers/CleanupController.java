@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Adam Wandoch
  */
-
 @RestController
-@CrossOrigin(origins = {"https://social-app-prototype.netlify.app/", "http://localhost:3000"})
+@CrossOrigin(origins = {"https://social-app-prototype.netlify.app/", "http://localhost:3000", "https://localhost:44347/"})
 public class CleanupController {
 
     @Autowired
